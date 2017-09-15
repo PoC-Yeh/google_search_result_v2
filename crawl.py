@@ -33,7 +33,7 @@ def crawl(url, filename):
     w3 = csv.writer(f)
     w3.writerows(serp_list)
     
-    with open("gs_{}_pickle.txt".format(filenmae), "wb")as c:
+    with open("gs_{}_pickle.txt".format(filename), "wb")as c:
         pickle.dump(serp_list, c)
 
         
