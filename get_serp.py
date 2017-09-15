@@ -1,8 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
 import re
-import progressbar
-import time
 
 
 def get_title(soup, serp_list):
@@ -20,15 +18,17 @@ def get_title(soup, serp_list):
             
             
 def next_page(soup):
-    next_page = soup.find_all(href=re.compile("/search?"))
-    
-    if "下一頁" in str(next_page[-1]):    
-        next_page_url = next_page[-1].get("href")
-        domain = "https://www.google.com.tw"
-        whole_url = domain + next_page_url
-        return(whole_url)
-    else:
+    ahref = soup.select(".fl")
+    check_if_next_page_exist = 0
+    for urls in ahref:
+        if urls.text == "下一頁":
+            check_if_next_page_exist += 1
+            next_page_url = urls.get("href")
+            domain = "https://www.google.com.tw"
+            whole_url = domain + next_page_url
+            return(whole_url)
+    if check_if_next_page_exist == 0:
         return(None)
-        
+  
         
       
