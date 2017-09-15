@@ -35,3 +35,5 @@ def crawl(url, filename):
     
     with open("gs_{}_pickle.txt".format(filenmae), "wb")as c:
         pickle.dump(serp_list, c)
+
+        
